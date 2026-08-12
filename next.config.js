@@ -1,4 +1,4 @@
-import "./src/env.js";
+ import "./src/env.js";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
