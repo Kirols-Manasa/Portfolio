@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Kirol Manasa" }],
   robots: { index: true, follow: true },
   themeColor: "#E21B23",
-  metadataBase: new URL("https://kirolmanasa.com"),
+  metadataBase: new URL("https://kirols-portfolio.vercel.app"),
   keywords: [
     "Kirol Manasa",
     "Kirol Manasa Developer",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       "Kirol Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
     images: [{ url: "/mata2.png", width: 1200, height: 630 }],
     type: "website",
-    url: "https://kirolmanasa.com",
+    url: "https://kirols-portfolio.vercel.app",
     siteName: "Kirol's Portfolio",
     locale: "en_US",
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   alternates: {
-    canonical: "https://kirolmanasa.com",
+    canonical: "https://kirols-portfolio.vercel.app",
   },
 };
 
