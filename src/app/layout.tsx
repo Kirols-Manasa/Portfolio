@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://kirols-portfolio.vercel.app",
   },
+  verification: {
+    google: "6gbMHsyf9v0uC5eznZfuwomHsuDLYWiTj8nMCK6-GAE",
+  },
 };
 
 export default function RootLayout({
