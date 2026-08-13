@@ -8,14 +8,18 @@ const __dirname = dirname(__filename);
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    // ✅ الصور المحلية في /public مش محتاجة optimization هنا
+    // لأن Next.js بيتعامل معاها تلقائياً
+    localPatterns: [
+      { pathname: "/**", search: "" },
+    ],
   },
 
   outputFileTracingRoot: __dirname,
 
   webpack: (webpackConfig) => {
     webpackConfig.context = __dirname;
-
     webpackConfig.watchOptions = {
       ...webpackConfig.watchOptions,
       ignored: [
@@ -25,13 +29,10 @@ const config = {
         "**/Cookies/**",
       ],
     };
-
-    // منع الـ glob من scan خارج المشروع
     webpackConfig.snapshot = {
       ...(webpackConfig.snapshot || {}),
       managedPaths: [],
     };
-
     return webpackConfig;
   },
 };

@@ -6,7 +6,12 @@ import Container from "@/Container";
 import { initHeroSmudge } from "./animations";
 
 const FLASH_IMAGES  = ["/1.webp", "/2.webp", "/3.webp", "/4.webp"];
- const RESTING_IMAGE = "/5.webp";
+const RESTING_IMAGE = "/5.webp";
+
+// ✅ URLs محسّنة عبر Next.js image optimizer مباشرة
+const FLASH_IMAGES_OPTIMIZED = FLASH_IMAGES.map(
+  (url) => `/_next/image?url=${encodeURIComponent(url)}&w=1920&q=75`
+);
 
 const socials = [
   { icon: "/icon/github.webp",    label: "GitHub",   href: "https://github.com/Kirols-Manasa" },
@@ -15,7 +20,8 @@ const socials = [
 ];
 
 export default function Hero() {
- const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -41,11 +47,9 @@ export default function Hero() {
           quality={85}
           decoding="async"
           placeholder="empty"
-          // ✅ الجديد: sizes بتقول للمتصفح الحجم المراد
           sizes="100vw"
           className="object-cover"
           style={{
-            // ✅ تأكد إن الصورة ما تتمط
             objectFit: "cover",
             objectPosition: "center",
           }}
@@ -65,9 +69,9 @@ export default function Hero() {
       {/* L2 — صور 1-4 بـ grayscale + flash جوا الـ smudge */}
       <div
         className="layer-flash absolute inset-0 z-20"
-        data-images={JSON.stringify(FLASH_IMAGES)}
+        data-images={JSON.stringify(FLASH_IMAGES_OPTIMIZED)}
         style={{
-          backgroundImage:    `url(${FLASH_IMAGES[0]})`,
+          backgroundImage:    `url(${FLASH_IMAGES_OPTIMIZED[0]})`,
           backgroundSize:     "cover",
           backgroundPosition: "center",
           filter:             "grayscale(1) contrast(1.1)",

@@ -30,9 +30,6 @@ const cfg: SmudgeConfig = {
   smudgeBgColor:     "#555",
 };
 
-// دالة آمنة لقراءة قايمة الصور من data-attribute
-// بتتحقق فعليًا إن القيمة Array of strings قبل ما ترجعها،
-// بدل ما تعمل assign مباشر لناتج JSON.parse اللي نوعه any
 function parseFlashImages(raw: string | undefined): string[] {
   try {
     const parsed: unknown = JSON.parse(raw ?? "[]");
@@ -43,8 +40,6 @@ function parseFlashImages(raw: string | undefined): string[] {
   }
 }
 
-// هذه الدالة بتتشغل بس على pointer: fine devices (mouse/trackpad)
-// touch-only devices بتتجاهل الدالة دي من Hero.tsx
 export function initHeroSmudge(section: HTMLElement): () => void {
   const svg           = section.querySelector<SVGSVGElement>(".smudge-revealer")!;
   const blobContainer = section.querySelector<SVGGElement>(".smudge-blobs")!;
@@ -53,7 +48,8 @@ export function initHeroSmudge(section: HTMLElement): () => void {
 
   bgLayer.style.backgroundColor = cfg.smudgeBgColor;
 
-  const flashImages: string[] = parseFlashImages(flashLayer.dataset.images);
+  // ✅ URLs جاهزة من Hero.tsx — لا fetch، لا blob، لا async
+  const images: string[] = parseFlashImages(flashLayer.dataset.images);
 
   const pointer = { x: 0, y: 0 };
   const smooth  = { x: 0, y: 0 };
@@ -71,26 +67,19 @@ export function initHeroSmudge(section: HTMLElement): () => void {
   const ro = new ResizeObserver(syncSVGSize);
   ro.observe(section);
 
-  function handlePointer(x: number, y: number) {
+  function onMouseMove(e: MouseEvent) {
+    const r = section.getBoundingClientRect();
     if (!started) {
-      pointer.x = smooth.x = x;
-      pointer.y = smooth.y = y;
+      pointer.x = smooth.x = e.clientX - r.left;
+      pointer.y = smooth.y = e.clientY - r.top;
       started = true;
       return;
     }
-    pointer.x = x;
-    pointer.y = y;
+    pointer.x = e.clientX - r.left;
+    pointer.y = e.clientY - r.top;
   }
 
-  function onMouseMove(e: MouseEvent) {
-    const r = section.getBoundingClientRect();
-    handlePointer(e.clientX - r.left, e.clientY - r.top);
-  }
   function onMouseLeave() { started = false; }
-
-  // touch listeners محذوفة — لأن:
-  // 1. الدالة دي بتتشغل بس على pointer: fine (mouse) devices
-  // 2. touch listeners مع preventDefault كانت بتكسر الـ scroll على mobile
 
   section.addEventListener("mousemove",  onMouseMove);
   section.addEventListener("mouseleave", onMouseLeave);
@@ -121,8 +110,9 @@ export function initHeroSmudge(section: HTMLElement): () => void {
   function advanceFlash(now: number) {
     if (now - lastFlash < cfg.flashInterval) return;
     lastFlash  = now;
-    currentImg = (currentImg + 1) % flashImages.length;
-    flashLayer.style.backgroundImage = `url(${flashImages[currentImg]})`;
+    currentImg = (currentImg + 1) % images.length;
+    // ✅ بيستخدم /_next/image URLs مباشرة — بدون أي async
+    flashLayer.style.backgroundImage = `url(${images[currentImg]})`;
   }
 
   function tick(now: number) {
