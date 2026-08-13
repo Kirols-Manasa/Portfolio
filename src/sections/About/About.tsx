@@ -51,18 +51,24 @@ export default function About() {
     >
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image - Left Side — static, no animation */}
+          {/* Image - Left Side — محسّن */}
           <div className="relative h-[650px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
+            {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
             <Image
               src="/2.webp"
               alt="Kirols Manasa - Frontend Developer"
               fill
+              // ✅ sizes: على موبايل 100vw (full width)، على desktop 50vw (نصف العرض)
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
-              priority
-              quality={80}
+              priority={false}  // ✅ ملاحظة: priority=false لأن هذي ليست الصورة الأولى
+              quality={85}      // ✅ جودة عالية 85%
               decoding="async"
               placeholder="empty"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/20 via-transparent to-transparent pointer-events-none" />
           </div>

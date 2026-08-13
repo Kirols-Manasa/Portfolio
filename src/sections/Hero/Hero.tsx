@@ -15,14 +15,12 @@ const socials = [
 ];
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLSection>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    // شغّل الـ smudge بس على devices بيها pointer دقيق (mouse/trackpad)
-    // على touch-only devices (موبايل/تابلت بدون ماوس) متشغّلش
     const mq = window.matchMedia("(pointer: fine)");
     if (!mq.matches) return;
 
@@ -41,11 +39,17 @@ export default function Hero() {
           alt="Kirols Manasa"
           fill
           priority
-          quality={80}
+          quality={85}
           decoding="async"
           placeholder="empty"
+          // ✅ الجديد: sizes بتقول للمتصفح الحجم المراد
           sizes="100vw"
           className="object-cover"
+          style={{
+            // ✅ تأكد إن الصورة ما تتمط
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
         />
       </div>
 

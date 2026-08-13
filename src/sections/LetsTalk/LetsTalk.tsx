@@ -116,15 +116,17 @@ export default function LetsTalk() {
           {/* Left — Image + Back to Top */}
           <div className="w-full lg:w-1/2">
             <div ref={imageWrapRef} className="relative w-full aspect-[3/4]">
+              {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
               <Image
                 src="/3.webp"
                 alt="Kirols Manasa"
                 fill
+                // ✅ sizes بتقول: على موبايل 100vw، على desktop 50vw
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover rounded-2xl"
                 loading="lazy"
                 decoding="async"
-                quality={75}
+                quality={85}  // ✅ جودة عالية: 85% = نفس الجودة البصرية بس فايل أصغر
               />
 
               <div className="absolute bottom-0 left-0">

@@ -66,10 +66,10 @@ export default function Projects() {
       imageWrap: imageWrapRefs.current[i]!,
       img: imgRefs.current[i]!,
       contentChildren: contentRefs.current[i]
-  ? Array.from(contentRefs.current[i]!.children).filter(
-      (el): el is HTMLElement => el instanceof HTMLElement
-    )
-  : [],
+        ? Array.from(contentRefs.current[i]!.children).filter(
+            (el): el is HTMLElement => el instanceof HTMLElement
+          )
+        : [],
     }));
 
     rafRef.current = requestAnimationFrame(() => {
@@ -123,7 +123,7 @@ export default function Projects() {
                 willChange: "clip-path",
               }}
             >
-              {/* Background image */}
+              {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
               <Image
                 ref={(el) => {
                   imgRefs.current[index] = el;
@@ -131,9 +131,12 @@ export default function Projects() {
                 src={project.image}
                 alt={project.title}
                 fill
+                // ✅ sizes: 100vw على جميع الأجهزة (لأنها full screen)
                 sizes="100vw"
-                priority={index === 0}
+                priority={index === 0}  // ✅ أول صورة بـ priority
                 loading={index === 0 ? "eager" : "lazy"}
+                quality={85}  // ✅ جودة عالية 85%
+                decoding="async"
                 style={{
                   objectFit: "cover",
                   objectPosition: "center",
