@@ -58,7 +58,7 @@ export default function About() {
   src="/2.webp"
   alt="Kirols Manasa - Frontend Developer"
   fill
-   sizes="(max-width: 640px) 300vw, (max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 800px"
+  sizes="(max-width: 640px) 300vw, (max-width: 1024px) 150vw, 100vw"
   className="object-cover object-center"
   priority={false}
   quality={85}
