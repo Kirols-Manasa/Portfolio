@@ -15,8 +15,7 @@ const socials = [
 ];
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLSection>(null);
-
+ const sectionRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
