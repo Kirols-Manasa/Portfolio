@@ -1,4 +1,4 @@
-  "use client";
+ "use client";
 
 import Image from "next/image";
 import { createContext, useContext, useState, useRef, useEffect } from "react";
@@ -80,33 +80,33 @@ export default function Intro() {
 
       gsap.set(".intro-count p", { yPercent: 100 });
 
-      const tl = gsap.timeline({ delay: 1.1 });
+      const tl = gsap.timeline({ delay: 0.6 });
 
       tl.to(".intro-card", {
         scale: 1,
         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 1,
+        duration: 0.6,
         ease: "power3.inOut",
         stagger: 0.2,
       });
 
-      tl.set(".intro-brand", { visibility: "visible" }, 0.35);
+      tl.set(".intro-brand", { visibility: "visible" }, 0.2);
 
       tl.to(
         title.chars,
         {
           yPercent: 0,
           rotation: 0,
-          duration: 1,
+          duration: 0.6,
           ease: "power3.out",
           stagger: 0.04,
         },
-        0.35
+        0.2
       );
 
       tl.to(
         ".intro-count p",
-        { yPercent: 0, duration: 1, ease: "power3.out" },
+        { yPercent: 0, duration: 0.6, ease: "power3.out" },
         "<"
       );
 
@@ -115,7 +115,7 @@ export default function Intro() {
         counter,
         {
           value: 100,
-          duration: 2,
+          duration: 1.2,
           ease: "power2.inOut",
           onUpdate: () => {
             if (counterEl) {
@@ -125,7 +125,7 @@ export default function Intro() {
             }
           },
         },
-        "<0.5"
+        "<0.3"
       );
 
       tl.to(
@@ -133,17 +133,17 @@ export default function Intro() {
         {
           yPercent: -100,
           rotation: -10,
-          duration: 0.75,
+          duration: 0.5,
           ease: "power3.in",
           stagger: 0.04,
         },
-        3.25
+        1.95
       );
 
       tl.to(
         ".intro-count p",
-        { yPercent: -100, duration: 0.75, ease: "power3.in" },
-        3.25
+        { yPercent: -100, duration: 0.5, ease: "power3.in" },
+        1.95
       );
 
       tl.to(
@@ -151,28 +151,27 @@ export default function Intro() {
         {
           scale: 0,
           clipPath: "polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%)",
-          duration: 1,
+          duration: 0.6,
           ease: "power3.inOut",
           stagger: -0.075,
         },
-        3.5
+        2.45
       );
 
       tl.to(
         rootRef.current,
         {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-          duration: 1,
+          duration: 0.6,
           ease: "power3.inOut",
         },
-        4.35
+        3.05
       );
 
       tl.call(() => {
         setIntroComplete(true);
-        // ✅ أضف هذا: إرجع الاسكرول
         document.body.style.overflowY = "";
-      }, [], 4.35);
+      }, [], 3.05);
 
       tl.set(rootRef.current, { display: "none", pointerEvents: "none" });
     },

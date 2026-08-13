@@ -29,6 +29,10 @@ function ContentWrapper({ children }: { children: React.ReactNode }) {
         opacity: introComplete ? 1 : 0,
         transition: introComplete ? "opacity 0.3s ease-in-out" : "none",
         pointerEvents: introComplete ? "auto" : "none",
+        position: introComplete ? "relative" : "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
       }}
     >
       {children}
