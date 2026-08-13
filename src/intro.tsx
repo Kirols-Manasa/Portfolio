@@ -184,18 +184,26 @@ export default function Intro() {
       className="intro-loader fixed inset-0 z-[100] overflow-hidden"
       style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
     >
-      {CARD_IMAGES.map((src, i) => (
-        <div className="intro-card absolute top-1/2 left-1/2" key={src}>
-          <Image
-            src={src}
-            alt=""
-            fill
-            className="object-cover"
-            priority={i === 0}
-          />
-        </div>
-      ))}
-
+       {CARD_IMAGES.map((src, i) => (
+  <div
+    className="intro-card absolute top-1/2 left-1/2"
+    key={src}
+  >
+    <Image
+  src={src}
+  alt=""
+  fill
+  className="object-cover"
+  priority={i === 0}
+  quality={src === "/2.webp" ? 85 : 60}
+  sizes={
+    src === "/2.webp"
+      ? "(max-width: 640px) 300px, 500px"
+      : "(max-width: 640px) 160px, 250px"
+  }
+/>
+  </div>
+))}
       <div
         className="intro-brand absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{ visibility: "hidden" }}
