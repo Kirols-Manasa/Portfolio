@@ -1,18 +1,18 @@
  import gsap from "gsap";
 
 interface SmudgeConfig {
-  smoothing: number;
+  smoothing:         number;
   movementThreshold: number;
-  sizeFromSpeed: number;
-  expandMultiplier: number;
-  expandTime: number;
-  expandEase: string;
-  dissolveStart: number;
-  dissolveTime: number;
-  dissolveEase: string;
-  flashInterval: number;
-  maxBlobs: number;
-  smudgeBgColor: string;
+  sizeFromSpeed:     number;
+  expandMultiplier:  number;
+  expandTime:        number;
+  expandEase:        string;
+  dissolveStart:     number;
+  dissolveTime:      number;
+  dissolveEase:      string;
+  flashInterval:     number;
+  maxBlobs:          number;
+  smudgeBgColor:     string;
 }
 
 const cfg: SmudgeConfig = {
@@ -30,26 +30,16 @@ const cfg: SmudgeConfig = {
   smudgeBgColor:     "#555",
 };
 
-function parseFlashImages(raw: string | undefined): string[] {
-  try {
-    const parsed: unknown = JSON.parse(raw ?? "[]");
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter((item): item is string => typeof item === "string");
-  } catch {
-    return [];
-  }
-}
-
-export function initHeroSmudge(section: HTMLElement): () => void {
+export function initHeroSmudge(
+  section: HTMLElement,
+  setFlashIndex: (i: number) => void,
+  imageCount: number
+): () => void {
   const svg           = section.querySelector<SVGSVGElement>(".smudge-revealer")!;
   const blobContainer = section.querySelector<SVGGElement>(".smudge-blobs")!;
-  const flashLayer    = section.querySelector<HTMLElement>(".layer-flash")!;
   const bgLayer       = section.querySelector<HTMLElement>(".layer-bg")!;
 
   bgLayer.style.backgroundColor = cfg.smudgeBgColor;
-
-  // ✅ URLs جاهزة من Hero.tsx — لا fetch، لا blob، لا async
-  const images: string[] = parseFlashImages(flashLayer.dataset.images);
 
   const pointer = { x: 0, y: 0 };
   const smooth  = { x: 0, y: 0 };
@@ -110,9 +100,9 @@ export function initHeroSmudge(section: HTMLElement): () => void {
   function advanceFlash(now: number) {
     if (now - lastFlash < cfg.flashInterval) return;
     lastFlash  = now;
-    currentImg = (currentImg + 1) % images.length;
-    // ✅ بيستخدم /_next/image URLs مباشرة — بدون أي async
-    flashLayer.style.backgroundImage = `url(${images[currentImg]})`;
+    currentImg = (currentImg + 1) % imageCount;
+    // ✅ بدل ما نعبث في DOM — بنقول لـ React "غير الصورة"
+    setFlashIndex(currentImg);
   }
 
   function tick(now: number) {

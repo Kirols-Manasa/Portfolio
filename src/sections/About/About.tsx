@@ -55,21 +55,21 @@ export default function About() {
           <div className="relative h-[650px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
             {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
             <Image
-              src="/2.webp"
-              alt="Kirols Manasa - Frontend Developer"
-              fill
-              // ✅ sizes: على موبايل 100vw (full width)، على desktop 50vw (نصف العرض)
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center"
-              priority={false}  // ✅ ملاحظة: priority=false لأن هذي ليست الصورة الأولى
-              quality={85}      // ✅ جودة عالية 85%
-              decoding="async"
-              placeholder="empty"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-            />
+  src="/2.webp"
+  alt="Kirols Manasa - Frontend Developer"
+  fill
+   sizes="(max-width: 640px) 300vw, (max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 800px"
+  className="object-cover object-center"
+  priority={false}
+  quality={85}
+  decoding="async"
+  placeholder="blur"
+  blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoIAAgAAkA4JZQCdAEO/gHOAAD++P/YAAAA"
+  style={{
+    objectFit: "cover",
+    objectPosition: "center top",
+  }}
+/>
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/20 via-transparent to-transparent pointer-events-none" />
           </div>
 

@@ -1,4 +1,4 @@
-﻿ "use client";
+﻿  "use client";
 
 import { useCallback, useEffect, useRef } from "react";
 import Container from "@/Container";
@@ -122,11 +122,11 @@ export default function LetsTalk() {
                 alt="Kirols Manasa"
                 fill
                 // ✅ sizes بتقول: على موبايل 100vw، على desktop 50vw
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 640px) 300vw, (max-width: 1024px) 100vw, 50vw"
                 className="object-cover rounded-2xl"
                 loading="lazy"
                 decoding="async"
-                quality={85}  // ✅ جودة عالية: 85% = نفس الجودة البصرية بس فايل أصغر
+                 quality={85}  // ✅ جودة عالية: 85% = نفس الجودة البصرية بس فايل أصغر
               />
 
               <div className="absolute bottom-0 left-0">

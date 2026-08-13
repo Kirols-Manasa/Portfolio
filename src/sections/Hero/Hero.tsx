@@ -1,17 +1,12 @@
  "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "@/Container";
 import { initHeroSmudge } from "./animations";
 
 const FLASH_IMAGES  = ["/1.webp", "/2.webp", "/3.webp", "/4.webp"];
 const RESTING_IMAGE = "/5.webp";
-
-// ✅ URLs محسّنة عبر Next.js image optimizer مباشرة
-const FLASH_IMAGES_OPTIMIZED = FLASH_IMAGES.map(
-  (url) => `/_next/image?url=${encodeURIComponent(url)}&w=1920&q=75`
-);
 
 const socials = [
   { icon: "/icon/github.webp",    label: "GitHub",   href: "https://github.com/Kirols-Manasa" },
@@ -20,7 +15,8 @@ const socials = [
 ];
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef               = useRef<HTMLElement>(null);
+  const [flashIndex, setFlashIndex] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -29,7 +25,8 @@ export default function Hero() {
     const mq = window.matchMedia("(pointer: fine)");
     if (!mq.matches) return;
 
-    return initHeroSmudge(section);
+    // ✅ بنبعت setFlashIndex + عدد الصور — مفيش DOM manipulation خالص
+    return initHeroSmudge(section, setFlashIndex, FLASH_IMAGES.length);
   }, []);
 
   return (
@@ -37,26 +34,20 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-screen w-full overflow-hidden"
     >
-      {/* L0 — صورة 5 ملونة طبيعية */}
+      {/* L0 — صورة 5 الملونة */}
       <div className="layer-rest absolute inset-0 z-0">
         <Image
           src={RESTING_IMAGE}
           alt="Kirols Manasa"
           fill
           priority
-          quality={85}
-          decoding="async"
-          placeholder="empty"
-          sizes="100vw"
-          className="object-cover"
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
+         quality={85}
+        sizes="(max-width: 640px) 300vw, 100vw"
+          className="object-cover object-center"
         />
       </div>
 
-      {/* L1 — خلفية #555 جوا الـ smudge */}
+      {/* L1 — خلفية #555 */}
       <div
         className="layer-bg absolute inset-0 z-10"
         style={{
@@ -66,19 +57,37 @@ export default function Hero() {
         }}
       />
 
-      {/* L2 — صور 1-4 بـ grayscale + flash جوا الـ smudge */}
+      {/* L2 — صور الـ flash — كل صورة Next/Image بـ sizes صح */}
       <div
         className="layer-flash absolute inset-0 z-20"
-        data-images={JSON.stringify(FLASH_IMAGES_OPTIMIZED)}
         style={{
-          backgroundImage:    `url(${FLASH_IMAGES_OPTIMIZED[0]})`,
-          backgroundSize:     "cover",
-          backgroundPosition: "center",
-          filter:             "grayscale(1) contrast(1.1)",
-          WebkitMaskImage:    "url(#smudge-mask)",
-          maskImage:          "url(#smudge-mask)",
+          WebkitMaskImage: "url(#smudge-mask)",
+          maskImage:       "url(#smudge-mask)",
+          filter:          "grayscale(1) contrast(1.1)",
         }}
-      />
+      >
+        {FLASH_IMAGES.map((src, i) => (
+          <div
+            key={src}
+            className="absolute inset-0"
+            // ✅ opacity بس — مفيش layout shift
+            style={{ opacity: flashIndex === i ? 1 : 0 }}
+            aria-hidden="true"
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              // أول صورة priority، باقيهم lazy
+              priority={i === 0}
+               quality={85}
+              // ✅ Next.js بيختار الحجم المناسب للـ device تلقائياً
+              sizes="(max-width: 640px) 640w, (max-width: 1280px) 1280w, 1920w"
+              className="object-cover object-center"
+            />
+          </div>
+        ))}
+      </div>
 
       {/* SVG — goo filter + mask */}
       <svg
@@ -122,8 +131,6 @@ export default function Hero() {
                       fill
                       loading="lazy"
                       quality={75}
-                      decoding="async"
-                      placeholder="empty"
                       sizes="20px"
                       className="object-contain"
                       style={{ filter: "brightness(0)" }}

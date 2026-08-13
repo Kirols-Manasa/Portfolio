@@ -125,28 +125,27 @@ export default function Projects() {
             >
               {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
               <Image
-                ref={(el) => {
-                  imgRefs.current[index] = el;
-                }}
-                src={project.image}
-                alt={project.title}
-                fill
-                // ✅ sizes: 100vw على جميع الأجهزة (لأنها full screen)
-                sizes="100vw"
-                priority={index === 0}  // ✅ أول صورة بـ priority
-                loading={index === 0 ? "eager" : "lazy"}
-                quality={85}  // ✅ جودة عالية 85%
-                decoding="async"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  willChange: "transform",
-                  transform: index === 0 ? "scale(1)" : "scale(1.2)",
-                  transition:
-                    "transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s ease",
-                  filter: isHovered ? "brightness(1.05)" : "brightness(1)",
-                }}
-              />
+  ref={(el) => {
+    imgRefs.current[index] = el;
+  }}
+  src={project.image}
+  alt={project.title}
+  fill
+  sizes="(max-width: 640px) 200vw, (max-width: 1024px) 150vw, 100vw"
+  priority={index === 0}
+  loading={index === 0 ? "eager" : "lazy"}
+  quality={85}
+  decoding="async"
+  style={{
+    objectFit: "cover",
+    objectPosition: "center",
+    willChange: "transform",
+    transform: index === 0 ? "scale(1)" : "scale(1.2)",
+    transition:
+      "transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s ease",
+    filter: isHovered ? "brightness(1.05)" : "brightness(1)",
+  }}
+/>
 
               {/* Dark overlay */}
               <div
