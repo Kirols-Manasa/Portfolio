@@ -54,11 +54,11 @@ export default function About() {
           {/* Image - Left Side — محسّن */}
           <div className="relative h-[650px] rounded-2xl overflow-hidden shadow-2xl order-2 lg:order-1">
             {/* ✅ محسّن: صورة responsive مع sizes صحيح */}
-            <Image
+             <Image
   src="/2.webp"
   alt="Kirols Manasa - Frontend Developer"
   fill
-  sizes="(max-width: 640px) 300vw, (max-width: 1024px) 150vw, 100vw"
+  sizes="(max-width: 640px) 200vw, (max-width: 1024px) 100vw, 50vw"
   className="object-cover object-center"
   priority={false}
   quality={85}
