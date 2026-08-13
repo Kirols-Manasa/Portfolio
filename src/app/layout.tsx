@@ -17,17 +17,17 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Kirol's Portfolio | Full Stack Developer",
+  title: "Kirols' Portfolio | Full Stack Developer",
   description:
-    "Kirol Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
-  authors: [{ name: "Kirol Manasa" }],
+    "Kirols Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
+  authors: [{ name: "Kirols Manasa" }],
   robots: { index: true, follow: true },
   themeColor: "#E21B23",
   metadataBase: new URL("https://kirols-portfolio.vercel.app"),
   keywords: [
-    "Kirol Manasa",
-    "Kirol Manasa Developer",
-    "Kirol Manasa Portfolio",
+  "Kirols Manasa",
+"Kirols Manasa Developer", 
+"Kirols Manasa Portfolio",
     "Full Stack Developer",
     "Full Stack Developer Egypt",
     "Full Stack Developer Cairo",
@@ -39,27 +39,27 @@ export const metadata: Metadata = {
     "Frontend Developer Portfolio Egypt",
   ],
   openGraph: {
-    title: "Kirol's Portfolio | Full Stack Developer",
+    title: "Kirols' Portfolio | Full Stack Developer",
     description:
-      "Kirol Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
-    images: [{ url: "/mata2.png", width: 1200, height: 630 }],
+      "Kirols Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
+    images: [{ url: "/mata2.webp", width: 1200, height: 630 }],
     type: "website",
     url: "https://kirols-portfolio.vercel.app",
-    siteName: "Kirol's Portfolio",
+    siteName: "Kirols' Portfolio",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kirol's Portfolio | Full Stack Developer",
+    title: "Kirols' Portfolio | Full Stack Developer",
     description:
-      "Kirol Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
-    images: ["/mata2.png"],
-    creator: "@kirolmanasa",
+      "Kirols Manasa — Full Stack Developer specializing in building modern web applications. Check out my projects, skills, and experience.",
+    images: ["/mata2.webp"],
+    creator: "@kirols Manasa",
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.webp",
+    shortcut: "/favicon.webp",
+    apple: "/favicon.webp",
   },
   alternates: {
     canonical: "https://kirols-portfolio.vercel.app",

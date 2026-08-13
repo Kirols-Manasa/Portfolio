@@ -34,7 +34,7 @@ export function useIntro() {
   return ctx;
 }
 
-const CARD_IMAGES = ["/5.png", "/1.webp", "/4.webp", "/3.webp", "/2.webp"];
+const CARD_IMAGES = ["/5.webp", "/1.webp", "/4.webp", "/3.webp", "/2.webp"];
 const CARD_ROTATIONS = [8, -3, -10, 10, -7];
 
 export default function Intro() {

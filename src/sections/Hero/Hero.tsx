@@ -6,7 +6,7 @@ import Container from "@/Container";
 import { initHeroSmudge } from "./animations";
 
 const FLASH_IMAGES  = ["/1.webp", "/2.webp", "/3.webp", "/4.webp"];
-const RESTING_IMAGE = "/5.png";
+ const RESTING_IMAGE = "/5.webp";
 
 const socials = [
   { icon: "/icon/github.webp",    label: "GitHub",   href: "https://github.com/Kirols-Manasa" },
