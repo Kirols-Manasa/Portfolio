@@ -121,7 +121,7 @@ export default function LetsTalk() {
   src="/3.webp"
   alt="Kirols Manasa"
   fill
-   sizes="(max-width: 640px) 200vw, (max-width: 1024px) 150vw, 50vw"
+  sizes="(max-width: 640px) 300vw, (max-width: 1024px) 150vw, 100vw"
   className="object-cover rounded-2xl"
   loading="lazy"
   decoding="async"
