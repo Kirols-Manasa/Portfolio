@@ -41,7 +41,6 @@ export default function Intro() {
   const { setIntroComplete } = useIntro();
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  // ✅ أضف هذا: منع الاسكرول في البداية
   useEffect(() => {
     const previousOverflowY = document.body.style.overflowY;
     document.body.style.overflowY = "hidden";
@@ -190,18 +189,15 @@ export default function Intro() {
     key={src}
   >
     <Image
-  src={src}
-  alt=""
-  fill
-  className="object-cover"
-  priority={i === 0}
-  quality={src === "/2.webp" ? 85 : 60}
-  sizes={
-    src === "/2.webp"
-      ? "(max-width: 640px) 300px, 500px"
-      : "(max-width: 640px) 160px, 250px"
-  }
-/>
+      src={src}
+      alt=""
+      fill
+      className="object-cover"
+      priority={i === 0}
+      loading={i === 0 ? "eager" : "lazy"}
+      quality={85}
+      sizes="(max-width: 640px) 300px, 500px"
+    />
   </div>
 ))}
       <div

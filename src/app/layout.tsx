@@ -7,6 +7,8 @@ const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: "variable",
   variable: "--font-bricolage",
+  display: "swap",
+  preload: true,
 });
 
 const interTight = Inter_Tight({
@@ -14,6 +16,8 @@ const interTight = Inter_Tight({
   weight: "variable",
   style: ["normal", "italic"],
   variable: "--font-inter-tight",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

@@ -285,7 +285,7 @@ export default function Header() {
             style={{
               border: "1px solid rgba(28,25,23,0.06)",
               background: "rgba(255,255,255,0.92)",
-              backdropFilter: "blur(20px)",
+              backdropFilter: "blur(12px)",
             }}
           >
             {NAV_LINKS.map((s) => {

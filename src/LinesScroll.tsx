@@ -1,14 +1,14 @@
- "use client";
+  "use client";
 
 import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LENIS_SCROLL_EVENT, type LenisScrollOptions } from "@/lib/lenis";
-import { useIntro } from "@/intro"; // ✅ استخدم useIntro
+import { useIntro } from "@/intro";
 
 export default function LinesScroll({ children }: { children: React.ReactNode }) {
-  const { introComplete } = useIntro(); // ✅ احصل على حالة الانترو
+  const { introComplete } = useIntro();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +22,6 @@ export default function LinesScroll({ children }: { children: React.ReactNode })
       respectReducedMotion: false,
     });
 
-    // ✅ منع الاسكرول أثناء الانترو
     if (!introComplete) {
       lenis.stop();
     } else {
@@ -53,12 +52,23 @@ export default function LinesScroll({ children }: { children: React.ReactNode })
 
     animationFrameId = requestAnimationFrame(raf);
 
+    // وقف الـ loop لو التاب مش active — بيوفر CPU وبطارية الموبايل
+    function handleVisibility() {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        animationFrameId = requestAnimationFrame(raf);
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener(LENIS_SCROLL_EVENT, handleScrollTo);
       lenis.destroy();
     };
-  }, [introComplete]); // ✅ أضف introComplete في dependencies
+  }, [introComplete]);
 
   return <>{children}</>;
 }

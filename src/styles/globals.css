@@ -1,4 +1,4 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 
 /* Fonts */
 :root {
@@ -66,6 +66,25 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1;
+}
+
+/* تقليل تكلفة render السكشنز اللي برا الشاشة على الموبايل */
+#about,
+#skills,
+#lets-talk {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 700px;
+}
+
+/* تحسين الـ tap response على الموبايل */
+a, button {
+  touch-action: manipulation;
+}
+
+/* منع الـ text size adjustment على iOS */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html {

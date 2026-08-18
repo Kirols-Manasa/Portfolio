@@ -1,11 +1,15 @@
  "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { TRPCReactProvider } from "@/trpc/react";
 import Header from "@/layout/Header/Header";
 import SmoothScroll from "@/LinesScroll";
 import CustomScrollbar from "@/CustomScrollbar";
-import GridOverlay from "@/GridOverlay";
+// GridOverlay هو tool للـ development بس — مش محتاجه في production
+const GridOverlay = process.env.NODE_ENV === "development"
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  ? (require("@/GridOverlay").default as React.ComponentType)
+  : () => null;
 import Intro, { IntroProvider, useIntro } from "@/intro";
 import LayoutContent from "@/LayoutContent";
 import Footer from "@/sections/Footer/Footer";

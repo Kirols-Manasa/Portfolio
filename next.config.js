@@ -1,4 +1,4 @@
- import "./src/env.js";
+  import "./src/env.js";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
@@ -9,8 +9,9 @@ const __dirname = dirname(__filename);
 const config = {
   images: {
     formats: ["image/avif", "image/webp"],
-    // ✅ الصور المحلية في /public مش محتاجة optimization هنا
-    // لأن Next.js بيتعامل معاها تلقائياً
+    deviceSizes: [390, 640, 828, 1080, 1280, 1920],
+    imageSizes: [20, 64, 160, 250, 384],
+    minimumCacheTTL: 31536000,
     localPatterns: [
       { pathname: "/**", search: "" },
     ],
