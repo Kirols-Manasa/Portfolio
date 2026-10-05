@@ -103,11 +103,11 @@ export function animateSkills({
   }
 
   const cardMeta: CardMeta[] = [
-    { title: "Frontend", sub: "React, TypeScript & modern CSS" },
-    { title: "Architecture", sub: "Scalable, type-safe systems" },
-    { title: "Backend", sub: "APIs, databases & auth flows" },
-    { title: "Tools", sub: "The craft behind the craft" },
-  ];
+  { title: "Frontend", sub: "React, TypeScript & modern CSS" },
+  { title: "Motion", sub: "GSAP, scroll & smooth interactions" },
+  { title: "Performance", sub: "Fast, accessible, search-ready" },
+  { title: "Tools", sub: "The craft behind the craft" },
+];
 
   // Fallback values used only if an index is somehow out of range
   // (keeps TS happy under `noUncheckedIndexedAccess` without changing behaviour,

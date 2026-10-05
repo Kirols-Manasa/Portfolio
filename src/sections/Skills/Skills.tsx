@@ -1,4 +1,4 @@
-﻿ "use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Container from "@/Container";
@@ -19,9 +19,9 @@ const categories = [
       { text: "React 19 / Next.js 15 (App Router)", highlight: false },
       { text: "TypeScript", highlight: false },
       { text: "Tailwind CSS", highlight: false },
-      { text: "Performance Optimization", highlight: false },
-      { text: "Core Web Vitals", highlight: false },
+      { text: "Server & Client Components", highlight: false },
       { text: "Responsive Design", highlight: false },
+      { text: "SEO & Metadata", highlight: false },
     ],
   },
   {
@@ -32,31 +32,30 @@ const categories = [
         <line x1="12" y1="17" x2="12" y2="21" />
       </svg>
     ),
-    title: "Architecture",
+    title: "Motion",
     items: [
-      { text: "T3 Stack", highlight: false },
-      { text: "Server & Client Components", highlight: false },
-      { text: "Type-Safe API Layer (tRPC)", highlight: false },
-      { text: "File-Based Routing", highlight: false },
-      { text: "Database Schema Design (Supabase)", highlight: false },
-      { text: "Authentication Flow (NextAuth.js)", highlight: false },
+      { text: "GSAP & ScrollTrigger", highlight: true },
+      { text: "Lenis Smooth Scroll", highlight: false },
+      { text: "SplitText & Text Reveals", highlight: false },
+      { text: "SVG Path Animation", highlight: false },
+      { text: "Pinned Scroll Sections", highlight: false },
+      { text: "Mouse-Reactive Effects", highlight: false },
     ],
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="4 17 10 11 4 5" />
-        <line x1="12" y1="19" x2="20" y2="19" />
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
-    title: "Backend",
+    title: "Performance",
     items: [
-      { text: "Next.js API Routes", highlight: false },
-      { text: "tRPC Server", highlight: false },
-      { text: "Prisma ORM", highlight: false },
-      { text: "PostgreSQL", highlight: false },
-      { text: "NextAuth.js", highlight: false },
-      { text: "Server Actions", highlight: false },
+      { text: "Core Web Vitals", highlight: false },
+      { text: "Next/Image (AVIF & WebP)", highlight: false },
+      { text: "Lazy Loading", highlight: false },
+      { text: "Accessibility", highlight: false },
+      { text: "Open Graph & Twitter Cards", highlight: false },
+      { text: "PageSpeed Insights", highlight: false },
     ],
   },
   {
@@ -127,7 +126,7 @@ export default function Skills() {
           >
             A curated selection of tools and technologies I use
             <br />
-            to build world-class digital products.
+            to build fast, animated websites.
           </p>
         </div>
 
@@ -156,9 +155,9 @@ export default function Skills() {
                     className="flex items-start gap-2 text-body-md"
                   >
                     <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-neutral-400 shrink-0" aria-hidden="true" />
-                    <span className={item.highlight ? "text-red-500" : "text-neutral-600"}>
-                      {item.text}
-                    </span>
+                   <span className="text-neutral-600">
+  {item.text}
+</span>
                   </li>
                 ))}
               </ul>
