@@ -148,13 +148,12 @@ export default function About() {
                 — building interfaces where clean architecture meets immersive user experience.
               </p>
 
-              <p
-                ref={(el) => { expertiseRefs.current[1] = el; }}
-                className="text-body-md text-neutral-700 dark:text-neutral-400 leading-relaxed"
-              >
-                And because I understand the full system — from database design to authentication
-                flows — I don&apos;t just build what&apos;s in front of me.
-              </p>
+             <p
+  ref={(el) => { expertiseRefs.current[1] = el; }}
+  className="text-body-md text-neutral-700 dark:text-neutral-400 leading-relaxed"
+>
+  I understand how the backend works, so I build cleaner interfaces. I don&apos;t just build what&apos;s in front of me.
+</p>
 
               <p
                 ref={(el) => { expertiseRefs.current[2] = el; }}
